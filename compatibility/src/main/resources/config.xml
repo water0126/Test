@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+ 		<typeAlias alias="TestServer" type="compatibility.vo.TestServer" />
+ 		<typeAlias alias="ScenarioRepository" type="compatibility.vo.ScenarioRepository" />
+ 		<typeAlias alias="Rullinfo" type="compatibility.vo.Rullinfo" />
+ 		<typeAlias alias="Binary" type="compatibility.vo.Binary" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<!-- connecting to Local MySql -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.tmax.tibero.jdbc.TbDriver" />
+				<property name="url" value="jdbc:tibero:thin:@192.168.17.72:10060:tibero" />
+				<property name="username" value="tibero" />
+				<property name="password" value="tmax" />	
+		        <property name="poolPingEnabled" value="true"/>	<!-- 커넥션 ping 테스트 -->
+		        <property name="poolPingQuery" value="select 1 from dual"/>	<!-- 커넥션이 살아 있는지 확인할 쿼리 -->
+		        <property name="poolPingConnectionsNotUsedFor" value="43200"/> <!-- 어떤 커넥션이 닫힐 상태인지 판단하는 기준시간 -->
+		        <property name="poolTimeToWait" value="30000"/><!-- 사용 불가능한 커넥션 기다리는 시간 -->			
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+  		<mapper resource="sqlmap/CompatibilityServer.xml" />
+  		<mapper resource="sqlmap/SecenarioRepository.xml" />
+  		<mapper resource="sqlmap/CompatibilityRullinfo.xml" />
+  		<mapper resource="sqlmap/CompatibilityBinary.xml" />
+	</mappers>
+</configuration>

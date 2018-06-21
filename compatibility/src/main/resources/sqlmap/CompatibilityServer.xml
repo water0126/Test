@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="compatibility.dao.TestServerDao">
+
+
+	<select id="getInfo" parameterType="int" resultType="TestServer">
+	   select
+		  server_seq
+		, server_type
+		, os_type
+		, os_version
+		, host_name
+		, server_ip
+		, server_id
+		, server_passwd
+		, server_home
+		, tibero_listen_port
+		, client_add_tbpccfg
+		from  Compatibility_Server 
+		where server_seq=#{seq};
+	</select> 
+
+</mapper>
